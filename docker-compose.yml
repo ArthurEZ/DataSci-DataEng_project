@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # API Service
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    container_name: bangkok-traffy-api
+    ports:
+      - "8000:8000"
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./bangkok_traffy_model.cbm:/app/bangkok_traffy_model.cbm:ro
+      - ./model_metadata.pkl:/app/model_metadata.pkl:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - traffy-network
+
+  # Frontend Service
+  frontend:
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile
+    container_name: bangkok-traffy-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - traffy-network
+
+networks:
+  traffy-network:
+    driver: bridge
+
+volumes:
+  model_data:
