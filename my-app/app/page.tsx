@@ -421,7 +421,7 @@ export default function TraffyPredictor() {
                             {category}
                           </span>
                           <span className="font-bold text-slate-900">
-                            {count.toFixed(1)}
+                            {((count / totalPredicted) * 100).toFixed(1)} %
                           </span>
                         </div>
                         <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
@@ -457,7 +457,7 @@ export default function TraffyPredictor() {
                         >
                           <span>{category}</span>
                           <span className="font-bold text-slate-800 text-xs bg-white px-1.5 py-0.5 rounded-md shadow-sm border border-slate-100">
-                            {count.toFixed(1)}
+                            {((count / totalPredicted) * 100).toFixed(1)} %
                           </span>
                         </div>
                       ))}
