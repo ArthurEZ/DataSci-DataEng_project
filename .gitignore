@@ -27,9 +27,6 @@ wheels/
 .ipynb_checkpoints
 *.ipynb_checkpoints
 
-# Model files (large files) - root only
-/bangkok_traffy_model.cbm
-/model_metadata.pkl
 *.h5
 *.pt
 *.pth
