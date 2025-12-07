@@ -17,7 +17,9 @@ import {
   ChevronDown,
   X,
   CalendarDays,
+  LineChart,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function TraffyPredictor() {
   // --- State ---
@@ -161,6 +163,15 @@ export default function TraffyPredictor() {
           <p className="max-w-2xl mx-auto text-lg text-slate-600">
             AI-powered forecasting of civic complaints for Bangkok subdistricts.
           </p>
+          <div className="flex justify-center gap-4 pt-2">
+            <Link
+              href="/visualizations"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-all shadow-sm hover:shadow-md"
+            >
+              <BarChart3 className="w-5 h-5" />
+              View Data Visualizations
+            </Link>
+          </div>
         </div>
 
         {/* Input Card */}
@@ -307,7 +318,7 @@ export default function TraffyPredictor() {
             <button
               onClick={handlePredict}
               disabled={loading || !subdistrict}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-blue-500/30 hover:shadow-xl hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:scale-100 transition-all duration-200"
+              className="w-full flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-blue-500/30 hover:shadow-xl hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:scale-100 transition-all duration-200"
             >
               {loading ? (
                 <>
